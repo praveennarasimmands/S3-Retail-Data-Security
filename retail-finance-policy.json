@@ -1,0 +1,37 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::retail-transaction-data",
+                "arn:aws:s3:::retail-transaction-data/*"
+            ],
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "203.0.113.0/24"
+                }
+            }
+        },
+        {
+            "Effect": "Deny",
+            "Action": [
+                "s3:*"
+            ],
+            "Resource": [
+                "arn:aws:s3:::retail-transaction-data",
+                "arn:aws:s3:::retail-transaction-data/*"
+            ],
+            "Condition": {
+                "StringNotEquals": {
+                    "aws:PrincipalTag/role": "finance_team"
+                }
+            }
+        }
+    ]
+}
