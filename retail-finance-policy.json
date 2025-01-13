@@ -1,35 +1,39 @@
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "AllowAccessFromSpecificIP",
-            "Effect": "Allow",
-            "Principal": "*",
-            "Action": "s3:*",
-            "Resource": [
-                "arn:aws:s3:::retailtransactiondata",
-                "arn:aws:s3:::retailtransactiondata/*"
-            ],
-            "Condition": {
-                "IpAddress": {
-                    "aws:SourceIp": "your_ip_address/32"
-                }
-            }
-        },
-        {
-            "Sid": "RestrictAccessToFinanceTeam",
-            "Effect": "Deny",
-            "Principal": "*",
-            "Action": "s3:*",
-            "Resource": [
-                "arn:aws:s3:::retailtransactiondata",
-                "arn:aws:s3:::retailtransactiondata/*"
-            ],
-            "Condition": {
-                "StringNotEquals": {
-                    "aws:PrincipalTag/role": "finance_team"
-                }
-            }
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": "*",  
+      "Action": [
+        "s3:ListAllMyBuckets",  
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": [
+        "arn:aws:s3:::*",
+        "arn:aws:s3:::retail-transaction-data",
+        "arn:aws:s3:::retail-transaction-data/*"
+      ],
+      "Condition": {
+        "IpAddress": {
+          "aws:SourceIp": "152.58.227.91/32"  
         }
-    ]
+      }
+    },
+    {
+      "Effect": "Deny",
+      "Principal": "*",  
+      "Action": "s3:*",  
+      "Resource": [
+        "arn:aws:s3:::retail-transaction-data",
+        "arn:aws:s3:::retail-transaction-data/*"
+      ],
+      "Condition": {
+        "StringNotEquals": {
+          "aws:PrincipalTag/role": "finance_team"  
+        }
+      }
+    }
+  ]
 }
