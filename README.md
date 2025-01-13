@@ -14,6 +14,9 @@ This project demonstrates how to use AWS S3, IAM roles, and bucket policies to s
 - **Bucket Policy**: Create S3 bucket policies to ensure that only the finance team can access sensitive data.
 - **IP-based Access Control**: Restrict access based on the IP addresses of the finance team’s network.
 
+---
+![image](https://github.com/user-attachments/assets/057d9080-eb2c-41f4-a3c8-649ef0a43c06)
+
 ### Implementation:
 1. **Create the S3 Bucket**: Store retail transaction data securely in S3.
 2. **Define IAM Policies for Retail Finance Team**: Limit access to financial records for the finance team only.
