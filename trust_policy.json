@@ -3,7 +3,9 @@
   "Statement": [
     {
       "Effect": "Allow",
-      "Principal": "*",
+      "Principal": {
+        "AWS": "*"
+      },
       "Action": "sts:AssumeRole",
       "Condition": {
         "StringEquals": {
