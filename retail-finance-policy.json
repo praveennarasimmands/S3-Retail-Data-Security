@@ -4,21 +4,24 @@
     {
       "Effect": "Allow",
       "Action": [
+        "s3:ListAllMyBuckets",
         "s3:ListBucket",
         "s3:GetObject",
         "s3:PutObject"
       ],
-      "Resource": "arn:aws:s3:::retail-transaction-data/*",
-      "Condition": {
-        "IpAddress": {
-          "aws:SourceIp": "your_Public_IP_address/32"
-        }
-      }
+      "Resource": [
+        "arn:aws:s3:::*",
+        "arn:aws:s3:::retailtransactiondata",
+        "arn:aws:s3:::retailtransactiondata/*"
+      ]
     },
     {
       "Effect": "Deny",
       "Action": "s3:*",
-      "Resource": "arn:aws:s3:::retail-transaction-data/*",
+      "Resource": [
+        "arn:aws:s3:::retailtransactiondata",
+        "arn:aws:s3:::retailtransactiondata/*"
+      ],
       "Condition": {
         "StringNotEquals": {
           "aws:PrincipalTag/Role": "finance_team"
