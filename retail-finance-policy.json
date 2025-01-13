@@ -2,26 +2,32 @@
     "Version": "2012-10-17",
     "Statement": [
         {
+            "Sid": "AllowAccessFromSpecificIP",
             "Effect": "Allow",
-            "Action": [
-                "s3:ListBucket",
-                "s3:GetObject",
-                "s3:PutObject"
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::retailtransactiondata",
+                "arn:aws:s3:::retailtransactiondata/*"
             ],
-            "Resource": "arn:aws:s3:::retailtransactiondata/*",
             "Condition": {
                 "IpAddress": {
-                    "aws:SourceIp": "your_IP_address"
+                    "aws:SourceIp": "your_ip_address/32"
                 }
             }
         },
         {
+            "Sid": "RestrictAccessToFinanceTeam",
             "Effect": "Deny",
+            "Principal": "*",
             "Action": "s3:*",
-            "Resource": "arn:aws:s3:::retailtransactiondata/*",
+            "Resource": [
+                "arn:aws:s3:::retailtransactiondata",
+                "arn:aws:s3:::retailtransactiondata/*"
+            ],
             "Condition": {
                 "StringNotEquals": {
-                    "aws:PrincipalTag/Role": "finance_team"
+                    "aws:PrincipalTag/role": "finance_team"
                 }
             }
         }
