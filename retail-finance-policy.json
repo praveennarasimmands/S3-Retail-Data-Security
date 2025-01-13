@@ -17,7 +17,7 @@
       ],
       "Condition": {
         "IpAddress": {
-          "aws:SourceIp": "152.58.227.91/32"  
+          "aws:SourceIp": "your_ip_address/32"  
         }
       }
     },
