@@ -22,7 +22,7 @@
       }
     },
     {
-      "Sid": "RestrictAccessToFinanceTeam",
+      "Sid": "RestrictAccessToFinanceTeam"
       "Effect": "Deny",
       "Action": "s3:*",
       "Resource": [
