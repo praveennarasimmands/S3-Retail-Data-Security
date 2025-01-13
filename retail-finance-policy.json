@@ -11,7 +11,7 @@
             "Resource": "arn:aws:s3:::retailtransactiondata/*",
             "Condition": {
                 "IpAddress": {
-                    "aws:SourceIp": "152.58.227.91/32"
+                    "aws:SourceIp": "your_IP_address"
                 }
             }
         },
