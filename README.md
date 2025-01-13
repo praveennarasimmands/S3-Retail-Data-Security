@@ -35,7 +35,7 @@ This project demonstrates how to use AWS S3, IAM roles, and bucket policies to s
 ### YouTube Video:
 For a step-by-step tutorial on setting up this project, watch the video below:
 
-[S3 Retail Data Security Tutorial](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)
+[Video Link](https://img.youtube.com/vi/YOUR_VIDEO_ID/maxresdefault.jpg)
 
 ### Contributing:
 - Fork this repository and submit improvements or additional security features via Pull Requests.
