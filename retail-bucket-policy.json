@@ -1,39 +1,35 @@
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Sid": "AllowAccessFromSpecificIP",
-      "Effect": "Allow",
-      "Action": [
-        "s3:ListAllMyBuckets",
-        "s3:ListBucket",
-        "s3:GetObject",
-        "s3:PutObject"
-      ],
-      "Resource": [
-        "arn:aws:s3:::*",
-        "arn:aws:s3:::retail-transaction-data",
-        "arn:aws:s3:::retail-transaction-data/*"
-      ],
-      "Condition": {
-        "IpAddress": {
-          "aws:SourceIp": "Public_IP_Address/32"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllowAccessFromSpecificIP",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::retailtransactiondata",
+                "arn:aws:s3:::retailtransactiondata/*"
+            ],
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "your_public_IP/32"
+                }
+            }
+        },
+        {
+            "Sid": "RestrictAccessToFinanceTeam",
+            "Effect": "Deny",
+            "Principal": "*",
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::retailtransactiondata",
+                "arn:aws:s3:::retailtransactiondata/*"
+            ],
+            "Condition": {
+                "StringNotEquals": {
+                    "aws:PrincipalTag/role": "finance_team"
+                }
+            }
         }
-      }
-    },
-    {
-      "Sid": "RestrictAccessToFinanceTeam"
-      "Effect": "Deny",
-      "Action": "s3:*",
-      "Resource": [
-        "arn:aws:s3:::retail-transaction-data",
-        "arn:aws:s3:::retail-transaction-data/*"
-      ],
-      "Condition": {
-        "StringNotEquals": {
-          "aws:PrincipalTag/role": "finance_team"
-        }
-      }
-    }
-  ]
+    ]
 }
