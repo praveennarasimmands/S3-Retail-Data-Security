@@ -4,8 +4,14 @@
     {
       "Sid": "AllowAccessFromSpecificIP",
       "Effect": "Allow",
-      "Action": "s3:*",
+      "Action": [
+        "s3:ListAllMyBuckets",
+        "s3:ListBucket",
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
       "Resource": [
+        "arn:aws:s3:::*",
         "arn:aws:s3:::retail-transaction-data",
         "arn:aws:s3:::retail-transaction-data/*"
       ],
