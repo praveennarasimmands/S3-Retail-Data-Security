@@ -1,32 +1,29 @@
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "s3:ListAllMyBuckets",
-        "s3:ListBucket",
-        "s3:GetObject",
-        "s3:PutObject"
-      ],
-      "Resource": [
-        "arn:aws:s3:::*",
-        "arn:aws:s3:::retailtransactiondata",
-        "arn:aws:s3:::retailtransactiondata/*"
-      ]
-    },
-    {
-      "Effect": "Deny",
-      "Action": "s3:*",
-      "Resource": [
-        "arn:aws:s3:::retailtransactiondata",
-        "arn:aws:s3:::retailtransactiondata/*"
-      ],
-      "Condition": {
-        "StringNotEquals": {
-          "aws:PrincipalTag/Role": "finance_team"
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "s3:ListBucket",
+                "s3:GetObject",
+                "s3:PutObject"
+            ],
+            "Resource": "arn:aws:s3:::retailtransactiondata/*",
+            "Condition": {
+                "IpAddress": {
+                    "aws:SourceIp": "152.58.227.91/32"
+                }
+            }
+        },
+        {
+            "Effect": "Deny",
+            "Action": "s3:*",
+            "Resource": "arn:aws:s3:::retailtransactiondata/*",
+            "Condition": {
+                "StringNotEquals": {
+                    "aws:PrincipalTag/Role": "finance_team"
+                }
+            }
         }
-      }
-    }
-  ]
+    ]
 }
