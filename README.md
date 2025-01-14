@@ -10,7 +10,7 @@ This project demonstrates how to use AWS S3, IAM roles, and bucket policies to s
 
 ### Key Features:
 - **S3 Bucket Setup**: Securely store customer payment and transaction data in S3.
-- **Role-based Access Control**: Use IAM policies to grant access to specific user roles (e.g., finance team).
+- **IAM User For Verification**: Use IAM policies to grant access to specific user(e.g., finance team).
 - **Bucket Policy**: Create S3 bucket policies to ensure that only the finance team can access sensitive data.
 - **IP-based Access Control**: Restrict access based on the IP addresses of the finance team’s network.
 
